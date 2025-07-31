@@ -1,0 +1,8 @@
+{
+    "workspace.library": [
+        "S:\\Apps\\VSCode\\extensions\\droidxrx.cheat-engine-lua-intellisense-0.0.3\\meta"
+    ],
+    "diagnostics.disable": [
+        "inject-field"
+    ]
+}
