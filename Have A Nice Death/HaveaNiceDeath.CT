@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"Group 1"</Description>
+      <Options moHideChildren="1" moManualExpandCollapse="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1</ID>
+          <Description>"Gold x2"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+imul ecx,(int)2
+
+originalcode:
+mov [eax+08],ecx
+jmp 19133DC2
+
+exit:
+jmp returnhere
+
+19133D9A:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+19133D9A:
+db 89 48 08 EB 23
+//mov [eax+08],ecx
+//jmp 19133DC2
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"Health"</Description>
+          <VariableType>Float</VariableType>
+          <Address>434E9D28</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Inf Health v1"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : HaveaNiceDeath.exe
+  Version: 
+  Date   : 2025-05-14
+  Author : Administrator
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(health1,E9 D9 5B 18 D9 43 18) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  fstp dword ptr [ebx+18]
+  add [ebx+18],(float)100
+  fld dword ptr [ebx+18]
+  jmp return
+
+health1+01:
+  jmp newmem
+  nop
+return:
+registersymbol(health1)
+
+[DISABLE]
+
+health1+01:
+  db D9 5B 18 D9 43 18
+
+unregistersymbol(health1)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 00E2EADF
+
+00E2EAC0: DD 5D D8        - fstp qword ptr [ebp-28]
+00E2EAC3: DD 45 D8        - fld qword ptr [ebp-28]
+00E2EAC6: D9 5D EC        - fstp dword ptr [ebp-14]
+00E2EAC9: 89 1C 24        - mov [esp],ebx
+00E2EACC: 8D 6D 00        - lea ebp,[ebp+00]
+00E2EACF: E8 B4 58 2B 00  - call 010E4388
+00E2EAD4: 89 45 AC        - mov [ebp-54],eax
+00E2EAD7: D9 43 18        - fld dword ptr [ebx+18]
+00E2EADA: D9 45 EC        - fld dword ptr [ebp-14]
+00E2EADD: DE E9           - fsubp st(1),st(0)
+// ---------- INJECTING HERE ----------
+00E2EADF: D9 5B 18        - fstp dword ptr [ebx+18]
+// ---------- DONE INJECTING  ----------
+00E2EAE2: D9 43 18        - fld dword ptr [ebx+18]
+00E2EAE5: D9 EE           - fldz 
+00E2EAE7: D9 43 1C        - fld dword ptr [ebx+1C]
+00E2EAEA: D9 5C 24 08     - fstp dword ptr [esp+08]
+00E2EAEE: D9 5C 24 04     - fstp dword ptr [esp+04]
+00E2EAF2: D9 1C 24        - fstp dword ptr [esp]
+00E2EAF5: 8B C0           - mov eax,eax
+00E2EAF7: E8 84 20 B8 17  - call 189B0B80
+00E2EAFC: E9 FF 14 F0 0E  - jmp 0FD30000
+00E2EB01: 90              - nop 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"Health Write v2"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : HaveaNiceDeath.exe
+  Version: 
+  Date   : 2025-05-14
+  Author : Administrator
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(health2,D9 5B 18 8B 43 10) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  fstp dword ptr [ebx+18]
+  add [ebx+18],(float)100
+  mov eax,[ebx+10]
+  jmp return
+
+health2:
+  jmp newmem
+  nop
+return:
+registersymbol(health2)
+
+[DISABLE]
+
+health2:
+  db D9 5B 18 8B 43 10
+
+unregistersymbol(health2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 00E2EAFC
+
+00E2EADD: DE E9              - fsubp st(1),st(0)
+00E2EADF: D9 5B 18           - fstp dword ptr [ebx+18]
+00E2EAE2: D9 43 18           - fld dword ptr [ebx+18]
+00E2EAE5: D9 EE              - fldz 
+00E2EAE7: D9 43 1C           - fld dword ptr [ebx+1C]
+00E2EAEA: D9 5C 24 08        - fstp dword ptr [esp+08]
+00E2EAEE: D9 5C 24 04        - fstp dword ptr [esp+04]
+00E2EAF2: D9 1C 24           - fstp dword ptr [esp]
+00E2EAF5: 8B C0              - mov eax,eax
+00E2EAF7: E8 84 20 B8 17     - call 189B0B80
+// ---------- INJECTING HERE ----------
+00E2EAFC: D9 5B 18           - fstp dword ptr [ebx+18]
+// ---------- DONE INJECTING  ----------
+00E2EAFF: 8B 43 10           - mov eax,[ebx+10]
+00E2EB02: 89 04 24           - mov [esp],eax
+00E2EB05: 8B 00              - mov eax,[eax]
+00E2EB07: FF 50 48           - call dword ptr [eax+48]
+00E2EB0A: 8B 4D AC           - mov ecx,[ebp-54]
+00E2EB0D: 0F B6 40 4C        - movzx eax,byte ptr [eax+4C]
+00E2EB11: 8B F9              - mov edi,ecx
+00E2EB13: 85 C0              - test eax,eax
+00E2EB15: 0F 84 73 00 00 00  - je 00E2EB8E
+00E2EB1B: 89 7D D0           - mov [ebp-30],edi
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"Souls Multiplier x2"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+imul ecx,(int)2
+
+originalcode:
+mov [eax+08],ecx
+mov eax,[06238624]
+
+exit:
+jmp returnhere
+
+0104722F:
+jmp newmem
+nop 4
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+0104722F:
+db 89 48 08 8B 05 24 86 23 06
+//mov [eax+08],ecx
+//mov eax,[06238624]
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Gold Write: mov [eax+08],ecx</Description>
+      <AddressString>19133D9A</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>08</Byte>
+        <Byte>2B</Byte>
+        <Byte>4D</Byte>
+        <Byte>14</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>EB</Byte>
+        <Byte>23</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>F4</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Health Write v1 :fstp dword ptr [ebx+18]</Description>
+      <AddressString>00E2EADF</AddressString>
+      <Before>
+        <Byte>D9</Byte>
+        <Byte>45</Byte>
+        <Byte>EC</Byte>
+        <Byte>DE</Byte>
+        <Byte>E9</Byte>
+      </Before>
+      <Actual>
+        <Byte>D9</Byte>
+        <Byte>5B</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>D9</Byte>
+        <Byte>43</Byte>
+        <Byte>18</Byte>
+        <Byte>D9</Byte>
+        <Byte>EE</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Health Write v2:fstp dword ptr [ebx+18]</Description>
+      <AddressString>00E2EAFC</AddressString>
+      <Before>
+        <Byte>E8</Byte>
+        <Byte>84</Byte>
+        <Byte>20</Byte>
+        <Byte>B8</Byte>
+        <Byte>17</Byte>
+      </Before>
+      <Actual>
+        <Byte>D9</Byte>
+        <Byte>5B</Byte>
+        <Byte>18</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>43</Byte>
+        <Byte>10</Byte>
+        <Byte>89</Byte>
+        <Byte>04</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Soul Write :mov [eax+08],ecx</Description>
+      <AddressString>32CB2B1D</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>08</Byte>
+        <Byte>03</Byte>
+        <Byte>4D</Byte>
+        <Byte>14</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>05</Byte>
+        <Byte>24</Byte>
+        <Byte>86</Byte>
+        <Byte>23</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Soul Write 2 :mov [eax+08],ecx</Description>
+      <AddressString>0104722F</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>08</Byte>
+        <Byte>2B</Byte>
+        <Byte>4D</Byte>
+        <Byte>14</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>05</Byte>
+        <Byte>24</Byte>
+        <Byte>86</Byte>
+        <Byte>23</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

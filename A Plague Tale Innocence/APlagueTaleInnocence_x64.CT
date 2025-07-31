@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>CB4F9828</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>CB4F9B88</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Scripts"</Description>
+      <Options moHideChildren="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"More Collect Item"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"APlagueTaleInnocence_x64.exe"+1EB2F4) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+add ecx,(int)20
+
+originalcode:
+mov [rax+30],ecx
+mov rbx,[rsp+58]
+
+exit:
+jmp returnhere
+
+"APlagueTaleInnocence_x64.exe"+1EB2F4:
+jmp newmem
+nop 3
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"APlagueTaleInnocence_x64.exe"+1EB2F4:
+db 89 48 30 48 8B 5C 24 58
+//mov [rax+30],ecx
+//mov rbx,[rsp+58]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1</ID>
+          <Description>"Inf Stone"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"APlagueTaleInnocence_x64.exe"+1EB3AC) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+add ecx,(int)1
+
+originalcode:
+mov [rax+30],ecx
+mov rbx,[rsp+30]
+
+exit:
+jmp returnhere
+
+"APlagueTaleInnocence_x64.exe"+1EB3AC:
+jmp newmem
+nop 3
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"APlagueTaleInnocence_x64.exe"+1EB3AC:
+db 89 48 30 48 8B 5C 24 30
+//mov [rax+30],ecx
+//mov rbx,[rsp+30]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Inf Item Consume"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,13FFF0003) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem:
+add ecx,(int)100
+
+originalcode:
+mov [rax+30],ecx
+mov rbx,[rsp+30]
+
+exit:
+jmp returnhere
+
+13FFF0003:
+jmp newmem
+nop 3
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+13FFF0003:
+db 89 48 30 48 8B 5C 24 30
+//mov [rax+30],ecx
+//mov rbx,[rsp+30]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>CB4F9BE8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>ABA5EDE8</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Stone Write :mov [rax+30],ecx</Description>
+      <AddressString>APlagueTaleInnocence_x64.exe+1EB3AC</AddressString>
+      <Before>
+        <Byte>8B</Byte>
+        <Byte>48</Byte>
+        <Byte>30</Byte>
+        <Byte>2B</Byte>
+        <Byte>CE</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>30</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>30</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Item Add :mov [rax+30],ecx</Description>
+      <AddressString>APlagueTaleInnocence_x64.exe+1EB2F4</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>30</Byte>
+        <Byte>41</Byte>
+        <Byte>03</Byte>
+        <Byte>0E</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>30</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>58</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Item Consume :mov [rax+30],ecx</Description>
+      <AddressString>13FFF0003</AddressString>
+      <Before>
+        <Byte>83</Byte>
+        <Byte>C1</Byte>
+        <Byte>01</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>30</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>30</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
